@@ -15,6 +15,9 @@ Train models with: nlpBudget-Clean.ipynb (nlpBudget was a rough try using inform
 
 The model can be ran and used to get summations and graphs with : csvAccounting.py and nlpPickleTest.ipynb
 
+
+*note I gave a example csv, but no pdfs since that has banking information
+
 Resources used:
 
 pdf:
