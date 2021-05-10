@@ -9,7 +9,7 @@ start juptyer notebook with:
 
 get the data from pdfs with: getBudgetData.ipynb
 
-Train models with: nlpBudget-Clean.ipynb
+Train models with: nlpBudget-Clean.ipynb (nlpBudget was a rough try using information from the first tutorial listed for nlp listed below)
     -> model trained and used was at the end called rfPipeline that has the tfidf transformer saved
     -> 91% accuracy and high f1 scores for most categories (need more data to better balance, all of it is restaurants :) )
 
