@@ -33,10 +33,30 @@ def PredictAndAppend(fileName):
     analysis =  csvCatandAccount(encoderPath, modelPath, fileName)
  
     banking_df =  analysis.predict()
-    banking_df.to_csv("banking_df.csv", mode='a', header=False)
     
+    banking_df.to_csv("banking_df.csv", mode='a', header=True)
+
+    banking_df['name'] = banking_df['name'].replace(to_replace =',\s*[A-Z][A-Z]', value = '', regex = True)
+    banking_df.name = banking_df.name.replace(to_replace ='#\w*\d+', value = '', regex = True)
+
+    #add cat
+    credit_df = banking_df[banking_df["credit"] == 0]
+    debt_df = banking_df[banking_df["debt"] == 0]
+ 
     print('done ')
     print(banking_df)
+    # sum each category
+    debtDisplaySum = debt_df.groupby('cat').sum()
+    print(debtDisplaySum)
+    debtDisplaySum.to_csv("banking_df.csv", mode='a', header=True)
 
+    print('top 3 cat')
+    # show top 3 in each cateogry
+    for key,i in debt_df.groupby('cat'):
+        print(key)
+        print("sum: " + str(i['credit'].sum()))
+        
+        nameCat = i.groupby("name")['credit'].sum().nlargest(3) #.sum().max()
+        print( (nameCat) )
 if __name__ == '__main__':
     app.run(debug=True)
